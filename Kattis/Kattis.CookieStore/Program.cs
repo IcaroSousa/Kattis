@@ -23,23 +23,18 @@ namespace Kattis.CookieStore
         }
         public static void Main(string[] args)
         {
-            SortedSet<int> _BigOnes = new SortedSet<int>(new ReverseSorting());
-            SortedSet<int> _SmallOnes = new SortedSet<int>();
-
-            _BigOnes.Add(-1);
-            _SmallOnes.Add(300000001);
+            SortedSet<int> _BigOnes = new SortedSet<int>(new ReverseSorting()) { -1 };
+            SortedSet<int> _SmallOnes = new SortedSet<int> { 300000001 };
 
             string _Input;
             while ((_Input = Console.ReadLine()) != null)
-            {
-                if (string.IsNullOrEmpty(_Input)) { break; }
-
+            {                
                 if (_Input.Equals("#"))
                 {
-                    if ((_SmallOnes.Count() > 0) || (_BigOnes.Count() > 0))
+                    if (_SmallOnes.Count > 0 || _BigOnes.Count > 0)
                     {
                         Console.WriteLine(_SmallOnes.GetNumber());
-                        if (_SmallOnes.Count != _BigOnes.Count())
+                        if (_SmallOnes.Count != _BigOnes.Count)
                         {
                             _SmallOnes.Add(_BigOnes.GetNumber());
                         }
@@ -51,7 +46,7 @@ namespace Kattis.CookieStore
                     if (_Number > _SmallOnes.First())
                     {
                         _SmallOnes.Add(_Number);
-                        if (_SmallOnes.Count() > _BigOnes.Count() + 1)
+                        if (_SmallOnes.Count > _BigOnes.Count +1)
                         {
                             _BigOnes.Add(_SmallOnes.GetNumber());
                         }
@@ -59,7 +54,7 @@ namespace Kattis.CookieStore
                     else
                     {
                         _BigOnes.Add(_Number);
-                        if (_BigOnes.Count() > _SmallOnes.Count())
+                        if (_BigOnes.Count > _SmallOnes.Count)
                         {
                             _SmallOnes.Add(_BigOnes.GetNumber());
                         }
