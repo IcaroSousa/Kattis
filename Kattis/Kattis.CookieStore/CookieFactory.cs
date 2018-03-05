@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Kattis.CookieStore
+namespace Kattis.CookieFactory
 {
     class ReverseSorting : IComparer<int>
     {
@@ -13,7 +13,7 @@ namespace Kattis.CookieStore
         }
     }
 
-    public static class CookieStore
+    public static class CookieFactory
     {
         public static int GetNumber(this SortedSet<int> pList)
         {
