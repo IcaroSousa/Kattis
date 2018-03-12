@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kattis.CookieStore", "Kattis.CookieStore\Kattis.CookieStore.csproj", "{0BD6F73E-E2F3-4FB1-A93E-B25080963208}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kattis.CookieStore", "Kattis.CookieStore\Kattis.CookieStore.csproj", "{0BD6F73E-E2F3-4FB1-A93E-B25080963208}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kattis.AreaFromPoints", "Kattis.AreaFromPoints\Kattis.AreaFromPoints.csproj", "{A4FAB20D-7453-45FA-8372-FD2FCBBA8194}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kattis.PhoneList", "Kattis.PhoneList\Kattis.PhoneList.csproj", "{20564921-E8D4-4CC0-AEEF-636E929BA639}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A4FAB20D-7453-45FA-8372-FD2FCBBA8194}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4FAB20D-7453-45FA-8372-FD2FCBBA8194}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4FAB20D-7453-45FA-8372-FD2FCBBA8194}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20564921-E8D4-4CC0-AEEF-636E929BA639}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20564921-E8D4-4CC0-AEEF-636E929BA639}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20564921-E8D4-4CC0-AEEF-636E929BA639}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20564921-E8D4-4CC0-AEEF-636E929BA639}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
