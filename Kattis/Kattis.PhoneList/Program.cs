@@ -4,13 +4,6 @@ namespace Kattis.PhoneList
 {
     static class PhoneList
     {
-        /*
-        static bool FindPrefix(this string pString, string pFind)
-        {            
-            return (pString.Length > pFind.Length) && (pFind == pString.Substring(0, pFind.Length));
-        }
-        */
-
         static void Main(string[] args)
         {
             int _Cases = int.Parse(Console.ReadLine());
@@ -35,13 +28,12 @@ namespace Kattis.PhoneList
                     string _Find = _PhoneList[_Index];
 
                     _Findded = (_Phone.Length > _Find.Length) && (_Find == _Phone.Substring(0, _Find.Length));
-                    //_Findded = _PhoneList[_Index + 1].FindPrefix(_PhoneList[_Index]);
                     if (_Findded) break;
                 }
 
                 Console.WriteLine(_Findded ? "NO" : "YES");
-                //_Watch.Stop();
 
+                //_Watch.Stop();
                 //Console.Write($"Execution Time : {_Watch.ElapsedMilliseconds}");
 
                 _Cases--;
