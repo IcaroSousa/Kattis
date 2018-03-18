@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace Kattis.AreaFromPoints
@@ -7,14 +8,12 @@ namespace Kattis.AreaFromPoints
     public class Hull
     {
 
-        public Hull(List<Point> pPoints)
+        public Hull(Point[] pPoints)
         {
-            InputPoints = new List<Point>();
+            InputPoints = new List<Point>(pPoints);
             HullPoints = new List<Point>();
 
-            InputPoints = pPoints;
             QuickHull();
-
         }
 
         public List<Point> HullPoints;
@@ -24,7 +23,7 @@ namespace Kattis.AreaFromPoints
         private double CalcArea()
         {
             double _Area = 0.0;
-            HullPoints.Insert(HullPoints.Count(), HullPoints.First());
+            HullPoints.Insert(HullPoints.Count, HullPoints[0]);
 
             for (int _Index = 0; _Index < HullPoints.Count - 1; _Index++)
             {
@@ -44,25 +43,21 @@ namespace Kattis.AreaFromPoints
             return Math.Abs((pPonintC.Y - pPointA.Y) * (pPointB.X - pPointA.X) - (pPointB.Y - pPointA.Y) * (pPonintC.X - pPointA.X));
         }
 
-        private void CreateHull(Point pPointA, Point pPointB, List<Point> pPoints)
+        private void CreateHull(Point pPointA, Point pPointB, Point[] pPoints)
         {
+            if (pPoints == null) return;
+
             int _PositionToInsert = HullPoints.IndexOf(pPointB);
-
-            if (!pPoints.Any())
+            if (pPoints.Length == 1)
             {
-                return;
-            }
-
-            if (pPoints.Count == 1)
-            {
-                HullPoints.Insert(_PositionToInsert, pPoints.First());
+                HullPoints.Insert(_PositionToInsert, pPoints[0]);
                 return;
             }
 
             int _DistanceToLine = int.MinValue;
             int MostDistantPOintIndex = 0;
 
-            for (int _Index = 0; _Index < pPoints.Count; _Index++)
+            for (int _Index = 0; _Index < pPoints.Length; _Index++)
             {
                 int _Distance = GetDistance(pPointA, pPointB, pPoints[_Index]);
                 if (_Distance > _DistanceToLine)
@@ -75,19 +70,35 @@ namespace Kattis.AreaFromPoints
             Point _Point = pPoints[MostDistantPOintIndex];
             HullPoints.Insert(_PositionToInsert, _Point);
 
-            List<Point> LeftPoints = new List<Point>();
-            List<Point> RightPoints = new List<Point>();
+            Point[] LeftPoints = null;
+            Point[] RightPoints = null;
 
-            for (int _Index = 0; _Index < pPoints.Count; _Index++)
+            for (int _Index = 0; _Index < pPoints.Length; _Index++)
             {
                 if (ClockSide(pPointA, _Point, pPoints[_Index]))
                 {
-                    LeftPoints.Add(pPoints[_Index]);
+                    if (LeftPoints == null)
+                    {
+                        LeftPoints = new Point[] { _Point };
+                    }
+                    else
+                    {
+                        Array.Resize(ref LeftPoints, LeftPoints.Length + 1);
+                        LeftPoints[LeftPoints.Length - 1] = _Point;   
+                    }
                 }
 
                 if (ClockSide(_Point, pPointB, pPoints[_Index]))
                 {
-                    RightPoints.Add(pPoints[_Index]);
+                    if (RightPoints == null)
+                    {
+                        RightPoints = new Point[] { _Point };
+                    }
+                    else
+                    {
+                        Array.Resize(ref RightPoints, RightPoints.Length + 1);
+                        RightPoints[RightPoints.Length - 1] = _Point;
+                    }
                 }
             }
 
@@ -95,15 +106,14 @@ namespace Kattis.AreaFromPoints
             CreateHull(_Point, pPointB, RightPoints);
         }
 
-        private void QuickHull()
+        void QuickHull()
         {
 
             if (InputPoints.Count <= 3)
             {
                 for (int i = 0, InputPointsCount = InputPoints.Count; i < InputPointsCount; i++)
-                {
-                    Point _Point = InputPoints[i];
-                    HullPoints.Add(_Point);
+                {                    
+                    HullPoints.Add(InputPoints[i]);
                 }
 
                 return;
@@ -115,19 +125,35 @@ namespace Kattis.AreaFromPoints
             HullPoints.Add(_SmallestPoint);
             HullPoints.Add(_BiggerPoint);
 
-            List<Point> left = new List<Point>();
-            List<Point> right = new List<Point>();
+            Point[] left = null;
+            Point[] right = null;
 
             for (int i = 0, InputPointsCount = InputPoints.Count; i < InputPointsCount; i++)
             {
                 Point _Point = InputPoints[i];
                 if (ClockSide(_SmallestPoint, _BiggerPoint, _Point))
                 {
-                    left.Add(_Point);
+                    if (left == null) 
+                    {
+                        left = new Point[] { _Point };
+                    }
+                    else
+                    {
+                        Array.Resize(ref left, left.Length + 1);
+                        left[left.Length - 1] = _Point;   
+                    }
                 }
                 else if (!ClockSide(_SmallestPoint, _BiggerPoint, _Point))
                 {
-                    right.Add(_Point);
+                    if (right == null)
+                    {
+                        right = new Point[] { _Point };
+                    }
+                    else
+                    {
+                        Array.Resize(ref right, right.Length + 1);
+                        right[right.Length - 1] = _Point;   
+                    }
                 }
             }
 
@@ -155,21 +181,22 @@ namespace Kattis.AreaFromPoints
             string _Input = Console.ReadLine();
             while (!_Input.Equals("0"))
             {
+                Stopwatch _Watch = Stopwatch.StartNew();
+
                 int _Loop = int.Parse(_Input);
-                List<Point> _Points = new List<Point>();
+                Point[] _Points = new Point[_Loop];
 
                 for (int _Index = 0; _Index < _Loop; _Index++)
-                {
-                    _Input = Console.ReadLine();
-                    string[] _point = _Input.Split(new char[] { ' ' }, StringSplitOptions.None).ToArray();
-
-                    _Points.Add(new Point(int.Parse(_point[0]), int.Parse(_point[1])));
+                {                    
+                    var _point = Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.None).ToArray();
+                    _Points[_Index] = new Point(int.Parse(_point[0]), int.Parse(_point[1]));                                       
                 }
-
 
                 Hull _Hull = new Hull(_Points);
                 Console.WriteLine(_Hull.Area.ToString("F1"));
-               
+
+                _Watch.Stop();
+                Console.Write($"Execution Time : {_Watch.ElapsedMilliseconds}");
 
                 _Input = Console.ReadLine();
             }

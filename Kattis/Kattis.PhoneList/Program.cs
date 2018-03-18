@@ -10,7 +10,7 @@ namespace Kattis.PhoneList
 
             while (_Cases > 0)
             {
-                //var _Watch = System.Diagnostics.Stopwatch.StartNew();
+                var _Watch = System.Diagnostics.Stopwatch.StartNew();
                 bool _Findded = false;
 
                 string[] _PhoneList = new string[int.Parse(Console.ReadLine())];
@@ -33,8 +33,8 @@ namespace Kattis.PhoneList
 
                 Console.WriteLine(_Findded ? "NO" : "YES");
 
-                //_Watch.Stop();
-                //Console.Write($"Execution Time : {_Watch.ElapsedMilliseconds}");
+                _Watch.Stop();
+                Console.Write($"Execution Time : {_Watch.ElapsedMilliseconds}");
 
                 _Cases--;
             }

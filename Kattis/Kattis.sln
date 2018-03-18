@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kattis.AreaFromPoints", "Ka
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kattis.PhoneList", "Kattis.PhoneList\Kattis.PhoneList.csproj", "{20564921-E8D4-4CC0-AEEF-636E929BA639}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kattis.BinaryMap", "Kattis.BinaryMap\Kattis.BinaryMap.csproj", "{3546D326-F597-418D-8039-72043D64B229}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{20564921-E8D4-4CC0-AEEF-636E929BA639}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20564921-E8D4-4CC0-AEEF-636E929BA639}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20564921-E8D4-4CC0-AEEF-636E929BA639}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3546D326-F597-418D-8039-72043D64B229}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3546D326-F597-418D-8039-72043D64B229}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3546D326-F597-418D-8039-72043D64B229}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3546D326-F597-418D-8039-72043D64B229}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

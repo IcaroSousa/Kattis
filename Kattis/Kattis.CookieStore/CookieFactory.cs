@@ -21,6 +21,7 @@ namespace Kattis.CookieFactory
             pList.Remove(_Number);
             return _Number;
         }
+
         public static void Main(string[] args)
         {
             SortedSet<int> _BigOnes = new SortedSet<int>(new ReverseSorting()) { -1 };
